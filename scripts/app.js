@@ -4,6 +4,11 @@ $(document).ready(function(){
   clearData();
   writeTableTitle();
 
+  $("#weather-clear").click(function(){
+    clearData();
+    writeTableTitle();
+  });
+
   $("#weather-forecast").click(function(){
 
     console.log("GetForecast");
@@ -41,7 +46,6 @@ $(document).ready(function(){
       console.log(data);
       var date = new Date(data.dt * 1000);
       console.log(date);
-      var dateStr = date.getFullYear() + "/ " + (date.getMonth() + 1) + "/" + date.getDate();
       var country = data.sys.country;
       var city = data.name;
       var info = parseData(data);
@@ -59,12 +63,20 @@ $(document).ready(function(){
 function parseData(data){
   var date = new Date(data.dt * 1000);
   console.log(date);
-  var dateStr = date.getFullYear() + "/ " + (date.getMonth() + 1) + "/" + date.getDate() + "[" + date.getHours() + ":" + date.getMinutes()+ "]";
+  var dateStr = date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate();
+  var time = date.getHours() + ":" + date.getMinutes();
   var temp_k = data.main.temp;
   var temp_c = round(temp_k - 273.15, 2);
   var humidity = data.main.humidity;
   var weather = (data.weather[0]).main;
-  var info = {"date": dateStr, "temp": temp_c, "humidity": humidity, "weather":weather};
+  if(weather == "Rain"){
+    weather = '<i class="fa fa-tint" aria-hidden="true"></i>' + weather;
+  }else if(weather == "Clouds"){
+    weather = '<i class="fa fa-cloud" aria-hidden="true"></i>' + weather;
+  }else if(weather == "Clear"){
+    weather = '<i class="fa fa-sun-o" aria-hidden="true"></i>' + weather;
+  }
+  var info = {"date": dateStr, "time": time, "temp": temp_c, "humidity": humidity, "weather":weather};
   return info;
 }
 
@@ -83,6 +95,7 @@ function getData(){
 
 function clearData(){
   $("#data").html("");
+  $("#cityname").val("");
 }
 
 function round(data, digit){
@@ -93,7 +106,13 @@ function round(data, digit){
 
 function writeTableTitle(){
   var html = $("#data").html();
-  html +="<tr><th>date</th><th>country</th><th>city</th><th>temp</th><th>humid</th><th>weather</th></tr>";
+  html +="<tr><th>Date</th>"
+  html +="<th>Time</th>";
+  html +="<th>Country</th>";
+  html +="<th>City</th>";
+  html +="<th>Temp</th>";
+  html +="<th>Humid</th>";
+  html +="<th>Weather</th></tr>";
   $("#data").html(html);
 }
 
@@ -107,6 +126,10 @@ function dataWrite(data){
   html += data["date"];
   html += "</td>";
   html += "<td>";
+  html += data["time"];
+  html += "</td>";
+  html += "<td>";
+  html += "<span class='flag-icon flag-icon-" + data["country"].toLowerCase() + "'></span> ";
   html += data["country"];
   html += "</td>";
   html += "<td>";

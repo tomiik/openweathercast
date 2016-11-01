@@ -1,6 +1,19 @@
-#weather-current{
-  border-style: solid;
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 2em;
+  h1{
+    text-align:center;
+    //background-color: #1a3;
+    border-radius: 2em;
+    padding:0.5em;
+    color: #555;
+
+  }
 }
-td{
-  border-style:solid;
+
+table{
+  font-size: 1.2em;
+  i{
+    width: 20px;
+  }
 }
