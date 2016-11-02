@@ -1,3 +1,4 @@
+var chartData = [];
 $(document).ready(function(){
   console.log("ready");
   var apiKey = "&APPID=0a72030de86532dc606cd9e539fc94bd";
@@ -10,7 +11,6 @@ $(document).ready(function(){
   });
 
   $("#weather-forecast").click(function(){
-
     console.log("GetForecast");
     var cityname = $("#cityname").val();
     var apiBaseUrl = "http://api.openweathermap.org/data/2.5/forecast/city?q=";
@@ -43,11 +43,11 @@ $(document).ready(function(){
       // console.log(Util.getWindArray(data));
       // console.log(Util.getWeatherArray(data));
       // console.log(Util.getWeatherArray(data,enum_weather.DETAIL));
-      dates = Util.getDateArray(data,"dddd hh a");
-      temps = Util.getTempArray(data,enum_temp_deg_type.C);
-      var chartData = [];
+      dates = Getarray.date(data,"ddd hh a");
+      temps = Getarray.temp(data,enum_temp_deg_type.C);
       chartData.push(Chart.dataForChart(data.city.name,temps))
-      Chart.simpleChart(dates,chartData,enum_temp_deg_type.C);
+      console.log(chartData);
+      Chart.simpleChart("5days forecast",dates,chartData,enum_temp_deg_type.C);
     }).fail(function(data){
       console.log("error");
     }).always(function(data){
@@ -110,43 +110,9 @@ function getData(){
 
 function clearData(){
   $("#data").html("");
+  chartData = [];
+  color_index = 0;
+  symbol_index = 0;
+
   //$("#cityname").val("");
-}
-
-function round(data, digit){
-  shift = Math.pow(10,digit);
-  data = Math.round(data * shift)/shift;
-  return data;
-}
-
-function drawForecastChart(data){
-  //console.log(data);
-  //$("#data").text(str);
-  var html = $("#data").html();
-  //console.log(html);
-  html += "<tr>";
-  html += "<td>";
-  html += data["date"];
-  html += "</td>";
-  html += "<td>";
-  html += data["time"];
-  html += "</td>";
-  html += "<td>";
-  html += data["country"];
-  html += "</td>";
-  html += "<td>";
-  html += data["city"];
-  html += "</td>";
-  html += "<td>";
-  html += data["temp"];
-  html += "</td>";
-  html += "<td>";
-  html += data["humidity"];
-  html += "</td>";
-  html += "<td>";
-  html += data["weather"];
-  html += "</td>";
-  html += "</tr>";
-
-  $("#data").html(html);
 }
