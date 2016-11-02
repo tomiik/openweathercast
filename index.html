@@ -8,6 +8,8 @@
   <link rel="stylesheet" href="bootstrap-3.3.7/css/bootstrap.min.css">
   <script type="text/javascript" src="scripts/jquery.js"></script>
   <script type="text/javascript" src="bootstrap-3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="scripts/util.js"></script>
+  <script type="text/javascript" src="scripts/writer.js"></script>
   <script type="text/javascript" src="scripts/app.js"></script>
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
@@ -19,7 +21,7 @@
     <h1>Get data from Open weather map with ajax</h1>
     <form class="form-inline">
       <div class="form-group">
-        <input id="cityname" class="form-control"  placeholder="City name" type="text">
+        <input id="cityname" class="form-control"  placeholder="City name" type="text" value="hyderabad">
         <input type="button" id="weather-clear" class="btn btn-default" value="Clear">
         <input type="button" id="weather-current" class="btn btn-default" value="Get Current Weather">
         <input type="button" id="weather-forecast" class="btn btn-default" value="Get Forecast">
@@ -29,5 +31,7 @@
     <table id="data" class="table table-hover table-striped table-bordered">
     </table>
   </div>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.2/moment.min.js"></script>
+
 </body>
 </html>
