@@ -49,7 +49,7 @@ Util = {
       }else{
         temp_k = (data.list[i]).main.temp;
       }
-      temp = convTemp(temp_k,type);
+      temp = this.convTemp(temp_k,type);
       array.push(temp);
     }
     return array;

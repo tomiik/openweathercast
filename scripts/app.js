@@ -28,22 +28,26 @@ $(document).ready(function(){
         info["city"] = city;
         Writer.writeTableData(info);
       }
-      console.log(Parser.getDateArray(data,"dddd"));
-      console.log(Parser.getTempArray(data));
-      console.log(Parser.getTempArray(data,enum_temp_degree.K));
-      console.log(Parser.getTempArray(data,enum_temp_degree.C));
-      console.log(Parser.getTempArray(data,enum_temp_degree.F));
-      console.log(Parser.getTempArray(data,enum_temp_degree.K,enum_temp_type.MAX));
-      console.log(Parser.getTempArray(data,enum_temp_degree.C,enum_temp_type.MAX));
-      console.log(Parser.getTempArray(data,enum_temp_degree.F,enum_temp_type.MAX));
-      console.log(Parser.getTempArray(data,enum_temp_degree.K,enum_temp_type.MIN));
-      console.log(Parser.getTempArray(data,enum_temp_degree.C,enum_temp_type.MIN));
-      console.log(Parser.getTempArray(data,enum_temp_degree.F,enum_temp_type.MIN));
-      console.log(Parser.getHumidArray(data));
-      console.log(Parser.getWindArray(data));
-      console.log(Parser.getWeatherArray(data));
-      console.log(Parser.getWeatherArray(data,enum_weather.DETAIL));
-
+      // console.log(Util.getDateArray(data,"dddd"));
+      // console.log(Util.getTempArray(data));
+      // console.log(Util.getTempArray(data,enum_temp_deg_type.K));
+      // console.log(Util.getTempArray(data,enum_temp_deg_type.C));
+      // console.log(Util.getTempArray(data,enum_temp_deg_type.F));
+      // console.log(Util.getTempArray(data,enum_temp_deg_type.K,enum_temp_type.MAX));
+      // console.log(Util.getTempArray(data,enum_temp_deg_type.C,enum_temp_type.MAX));
+      // console.log(Util.getTempArray(data,enum_temp_deg_type.F,enum_temp_type.MAX));
+      // console.log(Util.getTempArray(data,enum_temp_deg_type.K,enum_temp_type.MIN));
+      // console.log(Util.getTempArray(data,enum_temp_deg_type.C,enum_temp_type.MIN));
+      // console.log(Util.getTempArray(data,enum_temp_deg_type.F,enum_temp_type.MIN));
+      // console.log(Util.getHumidArray(data));
+      // console.log(Util.getWindArray(data));
+      // console.log(Util.getWeatherArray(data));
+      // console.log(Util.getWeatherArray(data,enum_weather.DETAIL));
+      dates = Util.getDateArray(data,"dddd hh a");
+      temps = Util.getTempArray(data,enum_temp_deg_type.C);
+      var chartData = [];
+      chartData.push(Chart.dataForChart(data.city.name,temps))
+      Chart.simpleChart(dates,chartData,enum_temp_deg_type.C);
     }).fail(function(data){
       console.log("error");
     }).always(function(data){
