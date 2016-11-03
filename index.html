@@ -29,14 +29,14 @@
   <title>Weather app</title>
 </head>
 <body>
-  <div class="container">
-    <form class="form-inline">
-      <div class="form-group">
-        <input id="search-cityname" class="form-control"  placeholder="City name" type="text" value="Hyderabad">
-        <input type="button" id="weather-app" class="btn btn-default" value="Forecast">
-      </div>
-    </form>
-  </div>
+  <section id="searchbox">
+    <div class="container">
+      <div class="row">
+          <input id="search-cityname" class="form-control col offset-m3 m4"  placeholder="City name" type="text" value="Hyderabad">
+          <button type="button" id="weather-app" class="btn btn-default col m2" value="Forecast">Forecast</botton>
+        </div>
+    </div>
+  </section>
 
   <section id="weatherapp" class="container hide">
     <div class="row">

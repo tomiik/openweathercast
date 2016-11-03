@@ -12,6 +12,7 @@ var pressure_2d = [];
 var humidity_2d = [];
 var wind_2d = [];
 
+
 $(document).ready(function(){
   console.log("ready");
   var apiKey = "&APPID=0a72030de86532dc606cd9e539fc94bd";
@@ -22,7 +23,14 @@ $(document).ready(function(){
   $("#weather-app").click(function(){
     refreshWeatherApp();
   });
-
+  $(document).keydown(function(key){
+    console.log(key.keyCode);
+    switch(key.keyCode){
+      case 13://Enter
+      refreshWeatherApp();
+      break;
+    }
+  });
   $("#selector-pressure").click(function(){
     $("#selector-pressure").toggleClass("selected");
     $("#selector-humidity").removeClass("selected");
@@ -43,7 +51,7 @@ $(document).ready(function(){
   });
 
   function refreshWeatherApp(){
-    var cityname = $(".form-group #search-cityname").val();
+    var cityname = $("#search-cityname").val();
     var apiBaseUrlForecast = "http://api.openweathermap.org/data/2.5/forecast/city?q=";
     var apiBaseUrlCurrent = "http://api.openweathermap.org/data/2.5/weather?q=";
     var sendUrlForecast = apiBaseUrlForecast + cityname + apiKey;
