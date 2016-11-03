@@ -29,9 +29,16 @@
   <title>Document</title>
 </head>
 <body>
-  <input type="button" id="weather-app" class="btn btn-default" value="Get Forecast">
+  <div class="container">
+    <form class="form-inline">
+    <div class="form-group">
+      <input id="search-cityname" class="form-control"  placeholder="City name" type="text" value="hyderabad">
+      <input type="button" id="weather-app" class="btn btn-default" value="Forecast">
+    </div>
+  </form>
+  </div>
 
-  <section id="weatherapp" class="container">
+  <section id="weatherapp" class="container hide">
     <div class="row">
       <div id="info" class="col offset-m1 m10">
         <!--city name-->
@@ -64,13 +71,13 @@
       </div>
       <div id="datail" class="col m5">
         <p>
-          <div class="button"></div>
+          <div id="selector-pressure" class="button"></div>
           Pressure: <span id="pressure">0</span></p>
         <p>
-          <div class="button"></div>
+          <div id="selector-humidity" class="button"></div>
           Humidity: <span id="humidity">73</span>%</p>
         <p>
-          <div class="button"></div>
+          <div id="selector-wind" class="button"></div>
           Wind: <span id="wind">6</span></p>
       </div>
       <div class="col m12">
@@ -81,7 +88,7 @@
 
         <a id="day0" class="waves-effect waves-light btn col m2 weather-panel selected">
           <p id="day0-day" class="day-name">MON</p>
-          <div class="weather-icon">
+          <div id="day0-weather-icon" class="weather-icon">
             <ul>
               <li class="basecloud"></li>
               <li class="icon-showers icon-sunny"></li>
@@ -93,7 +100,7 @@
 
         <a id="day1" class="waves-effect waves-light btn col m2 weather-panel">
           <p id="day1-day" class="day-name">MON</p>
-          <div class="weather-icon">
+          <div id="day1-weather-icon" class="weather-icon">
             <ul>
               <li class="basecloud"></li>
               <li class="icon-showers icon-sunny"></li>
@@ -105,7 +112,7 @@
 
         <a id="day2" class="waves-effect waves-light btn col m2 weather-panel">
           <p id="day2-day" class="day-name">MON</p>
-          <div class="weather-icon">
+          <div id="day2-weather-icon" class="weather-icon">
             <ul>
               <li class="basecloud"></li>
               <li class="icon-showers icon-sunny"></li>
@@ -117,7 +124,7 @@
 
         <a id="day3" class="waves-effect waves-light btn col m2 weather-panel">
           <p id="day3-day" class="day-name">MON</p>
-          <div class="weather-icon">
+          <div id="day3-weather-icon" class="weather-icon">
             <ul>
               <li class="basecloud"></li>
               <li class="icon-showers icon-sunny"></li>
@@ -129,7 +136,7 @@
 
         <a id="day4" class="waves-effect waves-light btn col m2 weather-panel">
           <p id="day4-day" class="day-name">MON</p>
-          <div class="weather-icon">
+          <div id="day4-weather-icon" class="weather-icon">
             <ul>
               <li class="basecloud"></li>
               <li class="icon-showers icon-sunny"></li>
@@ -146,348 +153,9 @@
   <br>
 
 
-  <div id="forecasticon" class="wrapper">
 
 
-    <div class="container">
-      <h1>What is Forecast Font?</h1>
-
-      <p>Forecast Font is a web-font for creating multi-layered weather
-        icons. It was created to enable you to have more control over the
-        look and feel of the icons, rather than only having a single colour or
-        style. Flat, single-colour icons might be what your after and thats
-        cool but with Forecast font you have all the flexibility to colour,
-        style or even animate various parts of the icons. Create something
-        a little different from the norm. Even better they are fully
-        scalable for use on all devices, no need to create cumbersome image
-        sprites or use multiple images to create your weather icons.</p>
-      </div>
-
-      <section class='icons'>
-        <div class='container'>
-
-          <div class='two columns'>
-            <ul>
-              <li class="icon-mist"></li>
-              <p>Mist</p>
-            </ul>
-          </div>
-
-          <div class='two columns'>
-            <ul>
-              <li class="icon-sunrise"></li>
-              <p>Sunrise</p>
-            </ul>
-          </div>
-
-          <div class='two columns'>
-            <ul>
-              <li class="icon-sun"></li>
-              <p>Sunny</p>
-            </ul>
-          </div>
-
-          <div class='two columns'>
-            <ul>
-              <li class="icon-sunset"></li>
-              <p>Sunset</p>
-            </ul>
-          </div>
-
-          <div class='two columns'>
-            <ul>
-              <li class="icon-moon"></li>
-              <p>Moon</p>
-            </ul>
-          </div>
-
-          <div class='two columns'>
-            <ul>
-              <li class="icon-cloud"></li>
-              <p>Cloudy</p>
-            </ul>
-          </div>
-
-          <div class='two columns'>
-            <ul>
-              <li class="basecloud"></li>
-              <li class="icon-drizzle"></li>
-              <p>Drizzle</p>
-            </ul>
-          </div>
-
-          <div class='two columns'>
-            <ul>
-              <li class="basecloud"></li>
-              <li class="icon-drizzle icon-sunny"></li>
-              <p>Drizzle, Sunny</p>
-            </ul>
-          </div>
-
-          <div class='two columns'>
-            <ul>
-              <li class="basecloud"></li>
-              <li class="icon-drizzle icon-night"></li>
-              <p>Drizzle, Night</p>
-            </ul>
-          </div>
-
-          <div class='two columns'>
-            <ul>
-              <li class="basecloud"></li>
-              <li class="icon-rainy"></li>
-              <p>Raining</p>
-            </ul>
-          </div>
-
-          <div class='two columns'>
-            <ul>
-              <li class="basecloud"></li>
-              <li class="icon-rainy icon-sunny"></li>
-              <p>Raining, Sunny</p>
-            </ul>
-          </div>
-
-          <div class='two columns'>
-            <ul>
-              <li class="basecloud"></li>
-              <li class="icon-rainy icon-night"></li>
-              <p>Raining, Night</p>
-            </ul>
-          </div>
-
-          <div class='two columns'>
-            <ul>
-              <li class="basecloud"></li>
-              <li class="icon-snowy"></li>
-              <p>Snowing</p>
-            </ul>
-          </div>
-
-          <div class='two columns'>
-            <ul>
-              <li class="basecloud"></li>
-              <li class="icon-snowy icon-sunny"></li>
-              <p>Snowing, Sunny</p>
-            </ul>
-          </div>
-
-          <div class='two columns'>
-            <ul>
-              <li class="basecloud"></li>
-              <li class="icon-snowy icon-night"></li>
-              <p>Snowing, Night</p>
-            </ul>
-          </div>
-
-          <div class='two columns'>
-            <ul>
-              <li class="basecloud"></li>
-              <li class="icon-showers"></li>
-              <p>Showers</p>
-            </ul>
-          </div>
-
-          <div class='two columns'>
-            <ul>
-              <li class="basecloud"></li>
-              <li class="icon-showers icon-sunny"></li>
-              <p>Showers, Sunny</p>
-            </ul>
-          </div>
-
-          <div class='two columns'>
-            <ul>
-              <li class="basecloud"></li>
-              <li class="icon-showers icon-night"></li>
-              <p>Showers, Night</p>
-            </ul>
-          </div>
-
-          <div class='two columns'>
-            <ul>
-              <li class="basethundercloud"></li>
-              <li class="icon-thunder"></li>
-              <p>Thunder</p>
-            </ul>
-          </div>
-
-          <div class='two columns'>
-            <ul>
-              <li class="basethundercloud"></li>
-              <li class="icon-thunder icon-sunny"></li>
-              <p>Thunder, Sunny</p>
-            </ul>
-          </div>
-
-          <div class='two columns'>
-            <ul>
-              <li class="basethundercloud"></li>
-              <li class="icon-thunder icon-night"></li>
-              <p>Thunder, Night</p>
-            </ul>
-          </div>
-
-          <div class='two columns'>
-            <ul>
-              <li class="basecloud"></li>
-              <li class="icon-frosty"></li>
-              <p>Frosty</p>
-            </ul>
-          </div>
-
-          <div class='two columns'>
-            <ul>
-              <li class="basecloud"></li>
-              <li class="icon-frosty icon-sunny"></li>
-              <p>Frosty, Sunny</p>
-            </ul>
-          </div>
-
-          <div class='two columns'>
-            <ul>
-              <li class="basecloud"></li>
-              <li class="icon-frosty icon-night"></li>
-              <p>Frosty, Night</p>
-            </ul>
-          </div>
-
-          <div class='two columns'>
-            <ul>
-              <li class="basecloud"></li>
-              <li class="icon-hail"></li>
-              <p>Hail</p>
-            </ul>
-          </div>
-
-          <div class='two columns'>
-            <ul>
-              <li class="basecloud"></li>
-              <li class="icon-hail icon-sunny"></li>
-              <p>Hail, Sunny</p>
-            </ul>
-          </div>
-
-          <div class='two columns'>
-            <ul>
-              <li class="basecloud"></li>
-              <li class="icon-hail icon-night"></li>
-              <p>Hail, Night</p>
-            </ul>
-          </div>
-
-          <div class='two columns'>
-            <ul>
-              <li class="basecloud"></li>
-              <li class="icon-sleet"></li>
-              <p>Sleet</p>
-            </ul>
-          </div>
-
-          <div class='two columns'>
-            <ul>
-              <li class="basecloud"></li>
-              <li class="icon-sleet icon-sunny"></li>
-              <p>Sleet, Sunny</p>
-            </ul>
-          </div>
-
-          <div class='two columns'>
-            <ul>
-              <li class="basecloud"></li>
-              <li class="icon-sleet icon-night"></li>
-              <p>Sleet, Night</p>
-            </ul>
-          </div>
-
-          <div class='two columns'>
-            <ul>
-              <li class="basecloud"></li>
-              <li class="icon-windy"></li>
-              <p>Windy</p>
-            </ul>
-          </div>
-
-          <div class='two columns'>
-            <ul>
-              <li class="basecloud"></li>
-              <li class="icon-windy icon-sunny"></li>
-              <p>Windy, Sunny</p>
-            </ul>
-          </div>
-
-          <div class='two columns'>
-            <ul>
-              <li class="basecloud"></li>
-              <li class="icon-windy icon-night"></li>
-              <p>Windy, Night</p>
-            </ul>
-          </div>
-
-          <div class='two columns'>
-            <ul>
-              <li class="windyraincloud"></li>
-              <li class="icon-windyrain"></li>
-              <p>Windy, Raining</p>
-            </ul>
-          </div>
-
-          <div class='two columns'>
-            <ul>
-              <li class="windyraincloud"></li>
-              <li class="icon-windyrain icon-sunny"></li>
-              <p>Windy, Raining, Sunny</p>
-            </ul>
-          </div>
-
-          <div class='two columns'>
-            <ul>
-              <li class="windyraincloud"></li>
-              <li class="icon-windyrain icon-night"></li>
-              <p>Windy, Raining, Night</p>
-            </ul>
-          </div>
-
-          <div class='two columns'>
-            <ul>
-              <li class="windysnowcloud"></li>
-              <li class="icon-windysnow"></li>
-              <p>Windy, Snowing</p>
-            </ul>
-          </div>
-
-          <div class='two columns'>
-            <ul>
-              <li class="windysnowcloud"></li>
-
-              <li class="icon-windysnow icon-sunny"></li>
-
-
-              <p>Windy, Snowing, Sunny</p>
-            </li>
-          </ul>
-        </div>
-
-        <div class='two columns'>
-          <ul>
-            <li class="windysnowcloud"></li>
-            <li class="icon-windysnow icon-night"></li>
-            <p>Windy, Snowing, Night</p>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <div class='clear'></div>
-
-  </div><!-- wrapper -->
-
-  <div class='clear'>
-
-  </div>
-
-
-
+<!--
   <section id="oldpart">
     <div class="container">
       <h1>Get data from Open weather map with ajax</h1>
@@ -506,6 +174,7 @@
       </table>
     </div>
   </section>
+-->
   <!--
 
   <ul>

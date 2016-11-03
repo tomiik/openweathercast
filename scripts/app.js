@@ -7,8 +7,10 @@ var today = "thursday";
 var temps_c_2d = [];
 var temps_f_2d = [];
 var dates_2d = [];
-var now_temp_c;
-var now_temp_f;
+var weather_2d = [];
+var pressure_2d = [];
+var humidity_2d = [];
+var wind_2d = [];
 
 $(document).ready(function(){
   console.log("ready");
@@ -21,13 +23,31 @@ $(document).ready(function(){
     refreshWeatherApp();
   });
 
+  $("#selector-pressure").click(function(){
+    $("#selector-pressure").toggleClass("selected");
+    $("#selector-humidity").removeClass("selected");
+    $("#selector-wind").removeClass("selected");
+    Chart.refreshChart();
+  });
+  $("#selector-humidity").click(function(){
+    $("#selector-pressure").removeClass("selected");
+    $("#selector-humidity").toggleClass("selected");
+    $("#selector-wind").removeClass("selected");
+    Chart.refreshChart();
+  });
+  $("#selector-wind").click(function(){
+    $("#selector-pressure").removeClass("selected");
+    $("#selector-humidity").removeClass("selected");
+    $("#selector-wind").toggleClass("selected");
+    Chart.refreshChart();
+  });
+
   function refreshWeatherApp(){
-    var cityname = $(".form-group #cityname").val();
+    var cityname = $(".form-group #search-cityname").val();
     var apiBaseUrlForecast = "http://api.openweathermap.org/data/2.5/forecast/city?q=";
     var apiBaseUrlCurrent = "http://api.openweathermap.org/data/2.5/weather?q=";
     var sendUrlForecast = apiBaseUrlForecast + cityname + apiKey;
     var sendUrlCurrent = apiBaseUrlCurrent + cityname + apiKey;
-
     //Current Weather
     $.ajax({
       url: sendUrlCurrent
@@ -50,24 +70,34 @@ $(document).ready(function(){
     $.ajax({
       url: sendUrlForecast
     }).done(function(data){
-      dates = Getarray.date(data,"ddd hh a");
+      console.log(data);
+      dates = Getarray.date(data,"ddd HH");
       temps_c = Getarray.temp(data,enum_temp_deg_type.C);
       temps_c_max = Getarray.temp(data,enum_temp_deg_type.C, enum_temp_type.MAX);
       temps_c_min = Getarray.temp(data,enum_temp_deg_type.C, enum_temp_type.MIN);
       temps_f = Getarray.temp(data,enum_temp_deg_type.F);
       temps_f_max = Getarray.temp(data,enum_temp_deg_type.F, enum_temp_type.MAX);
       temps_f_min = Getarray.temp(data,enum_temp_deg_type.F, enum_temp_type.MIN);
+      weather = Getarray.weather(data);
+      pressure = Getarray.pressure(data);
+      humidity = Getarray.humidity(data);
+      wind_kph = Getarray.wind(data);
+      wind_mph = Util.convKphToMphArr(wind_kph);
 
       dates_2d = Util.convTo2dArray(dates,dates);
       temps_c_2d = Util.convTo2dArray(temps_c,dates);
       temps_f_2d = Util.convTo2dArray(temps_f,dates);
+      weather_2d = Util.convTo2dArray(weather,dates);
+      pressure_2d = Util.convTo2dArray(pressure,dates);
+      humidity_2d = Util.convTo2dArray(humidity,dates);
+      wind_kph_2d = Util.convTo2dArray(wind_kph,dates);
+      wind_mph_2d = Util.convTo2dArray(wind_mph,dates);
 
+      $("#weatherapp").removeClass("hide");
 
-      Chart.oneDayChart(dates_2d[0],temps_c_2d[0]);
-
-
-      Writer.writeDayCard(dates,temps_c_min, temps_c_max);
-
+      //Chart.oneDayChart(dates_2d[0],temps_c_2d[0]);
+      Chart.refreshChart();
+      Writer.writeDayCard(dates,temps_c_min, temps_c_max, weather);
     }).fail(function(data){
       console.log("error");
     }).always(function(data){
@@ -79,34 +109,34 @@ $(document).ready(function(){
     $("#deg-type-c").toggleClass("disable");
     $("#deg-type-f").toggleClass("selected");
     $("#deg-type-f").toggleClass("disable");
-    Chart.refreshOneDayTempChart();
+    Chart.refreshChart();
     Writer.refreshTemp();
     Writer.refreshWind();
   });
   $("#day0").click(function(){
     Util.unselectAllDayButton();
     $("#day0").addClass("selected");
-    Chart.refreshOneDayTempChart();
+    Chart.refreshChart();
   });
   $("#day1").click(function(){
     Util.unselectAllDayButton();
     $("#day1").addClass("selected");
-    Chart.refreshOneDayTempChart();
+    Chart.refreshChart();
   });
   $("#day2").click(function(){
     Util.unselectAllDayButton();
     $("#day2").addClass("selected");
-    Chart.refreshOneDayTempChart();
+    Chart.refreshChart();
   });
   $("#day3").click(function(){
     Util.unselectAllDayButton();
     $("#day3").addClass("selected");
-    Chart.refreshOneDayTempChart();
+    Chart.refreshChart();
   });
   $("#day4").click(function(){
     Util.unselectAllDayButton();
     $("#day4").addClass("selected");
-    Chart.refreshOneDayTempChart();
+    Chart.refreshChart();
   });
   $("#weather-clear").click(function(){
     clearData();
@@ -114,7 +144,7 @@ $(document).ready(function(){
   });
   $("#weather-forecast").click(function(){
     console.log("GetForecast");
-    var cityname = $(".form-group #cityname").val();
+    var cityname = $(".form-group #search-cityname").val();
     var apiBaseUrl = "http://api.openweathermap.org/data/2.5/forecast/city?q=";
     var sendUrl = apiBaseUrl + cityname + apiKey;
     console.log(sendUrl);

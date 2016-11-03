@@ -31,7 +31,16 @@ Getarray = {
     }
     return array;
   },
-  humid: function(data){
+  pressure: function(data){
+    var array = [];
+    var humid = 0;
+    for(var i = 0; i < data.list.length; i++){
+      humid = (data.list[i]).main.pressure;
+      array.push(humid);
+    }
+    return array;
+  },
+  humidity: function(data){
     var array = [];
     var humid = 0;
     for(var i = 0; i < data.list.length; i++){

@@ -4,7 +4,6 @@ Util = {
   convTo2dArray(data,dates){
     var result = [];
     var length = data.length;
-
     var day = dates[0].slice(0,3);
     var temp = [];
     for(var i = 0; i < data.length; i++){
@@ -15,6 +14,14 @@ Util = {
         temp.push(data[i]);
       }
       day = dates[i].slice(0,3);
+    }
+    result.push(temp);
+    return result;
+  },
+  removeDay: function(date){
+    var result = [];
+    for(var i = 0; i < date.length; i++){
+      result.push(date[i].slice(4,date[i].length));
     }
     return result;
   },
@@ -75,5 +82,24 @@ Util = {
     $("#day2").removeClass("selected");
     $("#day3").removeClass("selected");
     $("#day4").removeClass("selected");
+  },
+  // removeDay: function(date){
+  //   console.log("removeDay")
+  //   var result = [];
+  //   for(var i = 0; i < date.length; i++){
+  //     result.push(date[i].slice(4,date[i].length));
+  //   }
+  //   console.log(result)
+  //   return result;
+  // },
+  convKphToMphArr: function(data){
+    var result = [];
+    for(var i = 0; i < data.length; i++){
+      result.push(this.convKphToMph(data[i]));
+    }
+    return result;
+  },
+  convKphToMph: function(data){
+    return Util.round(data/1.609344,2);
   }
 }

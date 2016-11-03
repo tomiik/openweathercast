@@ -19,11 +19,11 @@ Writer = {
     for(i = 0; i < dates_2d.length; i++){
       this.writeDayCardDay(i,(dates_2d[i])[0].slice(0,3));
       this.writeDayCardTemp(i,Util.round(Util.minArray(temps_min_2d[i]),0), Util.round(Util.maxArray(temps_max_2d[i]),0));
-      this.writeDayCardIcon(i,Weather.getIcon(weather_2d[i]));
+      this.writeDayCardIcon(i,Weather.getIcon((weather_2d[i])[0]));
     }
   },
-  writeDayCardIcon(dayNum,day){
-    $("#day" + dayNum + "-day").text(day);
+  writeDayCardIcon(dayNum,icon){
+    $("#day" + dayNum + "-weather-icon").html(icon);
   },
   writeDayCardDay(dayNum,day){
     $("#day" + dayNum + "-day").text(day);
@@ -34,7 +34,7 @@ Writer = {
     $("#day" + dayNum + "-temp-max").html(temp_max + "&#x2103;");
   },
   writePressure(pressure){
-    $("#pressure").text(pressure);
+    $("#pressure").text(pressure + " Pa");
   },
   writePrecipitation(pre){
     $("#precipitation").text(pre);
@@ -46,7 +46,7 @@ Writer = {
     if($("#deg-type-c").hasClass("selected")){
       this.writeWind(Util.round(today.wind,2) + " km/h");
     }else{
-      this.writeWind(Util.round(today.wind/1.609344,2) + " mph");
+      this.writeWind(Util.convKphToMph(today.wind) + " mph");
     }
   },
   writeWind(wind){
