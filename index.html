@@ -26,16 +26,16 @@
   <link href="forecastfont/forecast.css" rel="stylesheet">
   <link href="forecastfont/css/base.css" rel="stylesheet">
   <link href="forecastfont/css/skeleton.css" rel="stylesheet">
-  <title>Document</title>
+  <title>Weather app</title>
 </head>
 <body>
   <div class="container">
     <form class="form-inline">
-    <div class="form-group">
-      <input id="search-cityname" class="form-control"  placeholder="City name" type="text" value="hyderabad">
-      <input type="button" id="weather-app" class="btn btn-default" value="Forecast">
-    </div>
-  </form>
+      <div class="form-group">
+        <input id="search-cityname" class="form-control"  placeholder="City name" type="text" value="Hyderabad">
+        <input type="button" id="weather-app" class="btn btn-default" value="Forecast">
+      </div>
+    </form>
   </div>
 
   <section id="weatherapp" class="container hide">
@@ -53,10 +53,10 @@
         <div class="row">
           <div id="degree-picture-icon" class="col m4">
             <!--weather big icon-->
-              <ul>
-                <li class="basecloud"></li>
-                <li class="icon-showers icon-sunny"></li>
-              </ul>
+            <ul>
+              <li class="basecloud"></li>
+              <li class="icon-showers icon-sunny"></li>
+            </ul>
           </div>
           <div id="degree-picture-temp" class="col m4">
             <!--temperature-->
@@ -73,114 +73,114 @@
         <p>
           <div id="selector-pressure" class="button"></div>
           Pressure: <span id="pressure">0</span></p>
-        <p>
-          <div id="selector-humidity" class="button"></div>
-          Humidity: <span id="humidity">73</span>%</p>
-        <p>
-          <div id="selector-wind" class="button"></div>
-          Wind: <span id="wind">6</span></p>
-      </div>
-      <div class="col m12">
-        <div id="chart-container" style="min-width: 310px; height: 200px; margin: 0 auto"></div>
-      </div>
-      <div id="days-container">
-        <div class="col m1"></div>
+          <p>
+            <div id="selector-humidity" class="button"></div>
+            Humidity: <span id="humidity">73</span>%</p>
+            <p>
+              <div id="selector-wind" class="button"></div>
+              Wind: <span id="wind">6</span></p>
+            </div>
+            <div class="col m12">
+              <div id="chart-container" style="min-width: 310px; height: 200px; margin: 0 auto"></div>
+            </div>
+            <div id="days-container">
+              <div class="col m1"></div>
 
-        <a id="day0" class="waves-effect waves-light btn col m2 weather-panel selected">
-          <p id="day0-day" class="day-name">MON</p>
-          <div id="day0-weather-icon" class="weather-icon">
-            <ul>
-              <li class="basecloud"></li>
-              <li class="icon-showers icon-sunny"></li>
-            </ul>
+              <a id="day0" class="waves-effect waves-light btn col m2 weather-panel selected">
+                <p id="day0-day" class="day-name">MON</p>
+                <div id="day0-weather-icon" class="weather-icon">
+                  <ul>
+                    <li class="basecloud"></li>
+                    <li class="icon-showers icon-sunny"></li>
+                  </ul>
+                </div>
+                <p id="day0-temp-min" class="day-temp day-temp-min">min</p>
+                <p id="day0-temp-max" class="day-temp day-temp-max">max</p>
+              </a>
+
+              <a id="day1" class="waves-effect waves-light btn col m2 weather-panel">
+                <p id="day1-day" class="day-name">MON</p>
+                <div id="day1-weather-icon" class="weather-icon">
+                  <ul>
+                    <li class="basecloud"></li>
+                    <li class="icon-showers icon-sunny"></li>
+                  </ul>
+                </div>
+                <p id="day1-temp-min" class="day-temp day-temp-min">min</p>
+                <p id="day1-temp-max" class="day-temp day-temp-max">max</p>
+              </a>
+
+              <a id="day2" class="waves-effect waves-light btn col m2 weather-panel">
+                <p id="day2-day" class="day-name">MON</p>
+                <div id="day2-weather-icon" class="weather-icon">
+                  <ul>
+                    <li class="basecloud"></li>
+                    <li class="icon-showers icon-sunny"></li>
+                  </ul>
+                </div>
+                <p id="day2-temp-min" class="day-temp day-temp-min">min</p>
+                <p id="day2-temp-max" class="day-temp day-temp-max">max</p>
+              </a>
+
+              <a id="day3" class="waves-effect waves-light btn col m2 weather-panel">
+                <p id="day3-day" class="day-name">MON</p>
+                <div id="day3-weather-icon" class="weather-icon">
+                  <ul>
+                    <li class="basecloud"></li>
+                    <li class="icon-showers icon-sunny"></li>
+                  </ul>
+                </div>
+                <p id="day3-temp-min" class="day-temp day-temp-min">min</p>
+                <p id="day3-temp-max" class="day-temp day-temp-max">max</p>
+              </a>
+
+              <a id="day4" class="waves-effect waves-light btn col m2 weather-panel">
+                <p id="day4-day" class="day-name">MON</p>
+                <div id="day4-weather-icon" class="weather-icon">
+                  <ul>
+                    <li class="basecloud"></li>
+                    <li class="icon-showers icon-sunny"></li>
+                  </ul>
+                </div>
+                <p id="day4-temp-min" class="day-temp day-temp-min">min</p>
+                <p id="day4-temp-max" class="day-temp day-temp-max">max</p>
+              </a>
+
+            </div>
           </div>
-            <p id="day0-temp-min" class="day-temp day-temp-min">min</p>
-            <p id="day0-temp-max" class="day-temp day-temp-max">max</p>
-        </a>
 
-        <a id="day1" class="waves-effect waves-light btn col m2 weather-panel">
-          <p id="day1-day" class="day-name">MON</p>
-          <div id="day1-weather-icon" class="weather-icon">
-            <ul>
-              <li class="basecloud"></li>
-              <li class="icon-showers icon-sunny"></li>
-            </ul>
-          </div>
-          <p id="day1-temp-min" class="day-temp day-temp-min">min</p>
-          <p id="day1-temp-max" class="day-temp day-temp-max">max</p>
-        </a>
-
-        <a id="day2" class="waves-effect waves-light btn col m2 weather-panel">
-          <p id="day2-day" class="day-name">MON</p>
-          <div id="day2-weather-icon" class="weather-icon">
-            <ul>
-              <li class="basecloud"></li>
-              <li class="icon-showers icon-sunny"></li>
-            </ul>
-          </div>
-          <p id="day2-temp-min" class="day-temp day-temp-min">min</p>
-          <p id="day2-temp-max" class="day-temp day-temp-max">max</p>
-        </a>
-
-        <a id="day3" class="waves-effect waves-light btn col m2 weather-panel">
-          <p id="day3-day" class="day-name">MON</p>
-          <div id="day3-weather-icon" class="weather-icon">
-            <ul>
-              <li class="basecloud"></li>
-              <li class="icon-showers icon-sunny"></li>
-            </ul>
-          </div>
-          <p id="day3-temp-min" class="day-temp day-temp-min">min</p>
-          <p id="day3-temp-max" class="day-temp day-temp-max">max</p>
-        </a>
-
-        <a id="day4" class="waves-effect waves-light btn col m2 weather-panel">
-          <p id="day4-day" class="day-name">MON</p>
-          <div id="day4-weather-icon" class="weather-icon">
-            <ul>
-              <li class="basecloud"></li>
-              <li class="icon-showers icon-sunny"></li>
-            </ul>
-          </div>
-          <p id="day4-temp-min" class="day-temp day-temp-min">min</p>
-          <p id="day4-temp-max" class="day-temp day-temp-max">max</p>
-        </a>
-
-      </div>
-    </div>
-
-  </section>
-  <br>
+        </section>
+        <br>
 
 
 
 
-<!--
-  <section id="oldpart">
-    <div class="container">
-      <h1>Get data from Open weather map with ajax</h1>
-      <form class="form-inline">
+        <!--
+        <section id="oldpart">
+        <div class="container">
+        <h1>Get data from Open weather map with ajax</h1>
+        <form class="form-inline">
         <div class="form-group">
-          <input id="cityname" class="form-control"  placeholder="City name" type="text" value="hyderabad">
+        <input id="cityname" class="form-control"  placeholder="City name" type="text" value="hyderabad">
 
-          <input type="button" id="weather-clear" class="btn btn-default" value="Clear">
-          <input type="button" id="weather-current" class="btn btn-default" value="Get Current Weather">
-          <input type="button" id="weather-forecast" class="btn btn-default" value="Get Forecast">
-        </div>
-      </form>
-      <div id="chart-container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-      <br>
-      <table id="data" class="table table-hover table-striped table-bordered">
-      </table>
-    </div>
-  </section>
+        <input type="button" id="weather-clear" class="btn btn-default" value="Clear">
+        <input type="button" id="weather-current" class="btn btn-default" value="Get Current Weather">
+        <input type="button" id="weather-forecast" class="btn btn-default" value="Get Forecast">
+      </div>
+    </form>
+    <div id="chart-container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+    <br>
+    <table id="data" class="table table-hover table-striped table-bordered">
+  </table>
+</div>
+</section>
 -->
-  <!--
+<!--
 
-  <ul>
-  <li class="basecloud"></li>
-  <li class="icon-showers icon-sunny"></li>
-  <p>This icon shows Sunny with Showers.</p>
+<ul>
+<li class="basecloud"></li>
+<li class="icon-showers icon-sunny"></li>
+<p>This icon shows Sunny with Showers.</p>
 </ul>
 -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.2/moment.min.js"></script>
