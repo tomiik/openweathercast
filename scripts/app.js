@@ -1,18 +1,120 @@
 var chartData = [];
+var color_index = 0;
+var symbol_index = 0;
+var dates = [];
+var temps = [];
+var today = "thursday";
+var temps_c_2d = [];
+var temps_f_2d = [];
+var dates_2d = [];
+var now_temp_c;
+var now_temp_f;
+
 $(document).ready(function(){
   console.log("ready");
   var apiKey = "&APPID=0a72030de86532dc606cd9e539fc94bd";
   clearData();
+  refreshWeatherApp();
   Writer.writeTableTitle();
 
+  $("#weather-app").click(function(){
+    refreshWeatherApp();
+  });
+
+  function refreshWeatherApp(){
+    var cityname = $(".form-group #cityname").val();
+    var apiBaseUrlForecast = "http://api.openweathermap.org/data/2.5/forecast/city?q=";
+    var apiBaseUrlCurrent = "http://api.openweathermap.org/data/2.5/weather?q=";
+    var sendUrlForecast = apiBaseUrlForecast + cityname + apiKey;
+    var sendUrlCurrent = apiBaseUrlCurrent + cityname + apiKey;
+
+    //Current Weather
+    $.ajax({
+      url: sendUrlCurrent
+    }).done(function(data){
+      var day = Util.convDate(data.dt,"dddd");
+      var country = Util.withCountryFlag(data.sys.country);
+      var city = data.name;
+      var info = parseData(data);
+      info["country"] = country;
+      info["city"] = city;
+      info["day"] = day;
+      today = info;
+      Writer.writeCurrentData(info);
+    }).fail(function(data){
+      console.log("error");
+    }).always(function(data){
+      console.log("quit");
+    });
+
+    $.ajax({
+      url: sendUrlForecast
+    }).done(function(data){
+      dates = Getarray.date(data,"ddd hh a");
+      temps_c = Getarray.temp(data,enum_temp_deg_type.C);
+      temps_c_max = Getarray.temp(data,enum_temp_deg_type.C, enum_temp_type.MAX);
+      temps_c_min = Getarray.temp(data,enum_temp_deg_type.C, enum_temp_type.MIN);
+      temps_f = Getarray.temp(data,enum_temp_deg_type.F);
+      temps_f_max = Getarray.temp(data,enum_temp_deg_type.F, enum_temp_type.MAX);
+      temps_f_min = Getarray.temp(data,enum_temp_deg_type.F, enum_temp_type.MIN);
+
+      dates_2d = Util.convTo2dArray(dates,dates);
+      temps_c_2d = Util.convTo2dArray(temps_c,dates);
+      temps_f_2d = Util.convTo2dArray(temps_f,dates);
+
+
+      Chart.oneDayChart(dates_2d[0],temps_c_2d[0]);
+
+
+      Writer.writeDayCard(dates,temps_c_min, temps_c_max);
+
+    }).fail(function(data){
+      console.log("error");
+    }).always(function(data){
+      console.log("quit");
+    });
+  };
+  $("#degree-picture-selector").click(function(){
+    $("#deg-type-c").toggleClass("selected");
+    $("#deg-type-c").toggleClass("disable");
+    $("#deg-type-f").toggleClass("selected");
+    $("#deg-type-f").toggleClass("disable");
+    Chart.refreshOneDayTempChart();
+    Writer.refreshTemp();
+    Writer.refreshWind();
+  });
+  $("#day0").click(function(){
+    Util.unselectAllDayButton();
+    $("#day0").addClass("selected");
+    Chart.refreshOneDayTempChart();
+  });
+  $("#day1").click(function(){
+    Util.unselectAllDayButton();
+    $("#day1").addClass("selected");
+    Chart.refreshOneDayTempChart();
+  });
+  $("#day2").click(function(){
+    Util.unselectAllDayButton();
+    $("#day2").addClass("selected");
+    Chart.refreshOneDayTempChart();
+  });
+  $("#day3").click(function(){
+    Util.unselectAllDayButton();
+    $("#day3").addClass("selected");
+    Chart.refreshOneDayTempChart();
+  });
+  $("#day4").click(function(){
+    Util.unselectAllDayButton();
+    $("#day4").addClass("selected");
+    Chart.refreshOneDayTempChart();
+  });
   $("#weather-clear").click(function(){
     clearData();
     Writer.writeTableTitle();
   });
-
   $("#weather-forecast").click(function(){
     console.log("GetForecast");
-    var cityname = $("#cityname").val();
+    var cityname = $(".form-group #cityname").val();
     var apiBaseUrl = "http://api.openweathermap.org/data/2.5/forecast/city?q=";
     var sendUrl = apiBaseUrl + cityname + apiKey;
     console.log(sendUrl);
@@ -56,7 +158,7 @@ $(document).ready(function(){
   });
 
   $("#weather-current").click(function(){
-    var cityname = $("#cityname").val();
+    var cityname = $(".form-group #cityname").val();
     var apiBaseUrl = "http://api.openweathermap.org/data/2.5/weather?q=";
     var sendUrl = apiBaseUrl + cityname + apiKey;
     console.log(sendUrl);
@@ -65,13 +167,19 @@ $(document).ready(function(){
     }).done(function(data){
       console.log(data);
       var date = new Date(data.dt * 1000);
-      console.log(date);
+      var day = Util.convDate(data.dt,"dddd");
+
+      console.log(data);
       var country = Util.withCountryFlag(data.sys.country);
       var city = data.name;
       var info = parseData(data);
       info["country"] = country;
       info["city"] = city;
+      info["day"] = day;
+
       Writer.writeTableData(info);
+      Writer.writeCurrentData(info);
+
     }).fail(function(data){
       console.log("error");
     }).always(function(data){
@@ -88,10 +196,14 @@ function parseData(data){
   //var time = date.getHours() + ":" + date.getMinutes();
   time = Util.convDate(data.dt,"hh:mm")
   var temp_c = Util.convTemp(data.main.temp, enum_temp_deg_type.C);
+  var temp_f = Util.convTemp(data.main.temp, enum_temp_deg_type.F);
   var humidity = data.main.humidity;
+  var pressure = data.main.pressure;
   var weather = (data.weather[0]).main;
-  weather = Util.getWeatherIcon(weather) + weather;
-  var info = {"date": dateStr, "time": time, "temp": temp_c, "humidity": humidity, "weather":weather};
+  var weather_detail = (data.weather[0]).description;
+  var wind = data.wind.speed;
+  var wind_deg = data.wind.deg;
+  var info = {"date": dateStr, "time": time, "temp_c": temp_c,"temp_f":temp_f, "humidity": humidity, "weather":weather, "weather_detail":weather_detail, "wind": wind,"wind_deg":wind_deg, "pressure":pressure};
   return info;
 }
 

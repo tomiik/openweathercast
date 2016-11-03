@@ -1,6 +1,44 @@
 Util = {
   init: function(){
   },
+  convTo2dArray(data,dates){
+    var result = [];
+    var length = data.length;
+
+    var day = dates[0].slice(0,3);
+    var temp = [];
+    for(var i = 0; i < data.length; i++){
+      if(day !== dates[i].slice(0,3)){
+        result.push(temp);
+        temp = [];
+      }else{
+        temp.push(data[i]);
+      }
+      day = dates[i].slice(0,3);
+    }
+    return result;
+  },
+  averageArray: function(arr){
+    var result = 0;
+    for(var i = 0; i < arr.length; i++){
+      result += arr[i];
+    }
+    return result;
+  },
+  maxArray: function(arr){
+    var result = -999;
+    for(var i = 0; i < arr.length; i++){
+      result = Math.max(result,arr[i]);
+    }
+    return result;
+  },
+  minArray: function(arr){
+    var result = 999;
+    for(var i = 0; i < arr.length; i++){
+      result = Math.min(result,arr[i]);
+    }
+    return result;
+  },
   convDate: function(date,format){
     return date = moment(date * 1000).format(format);
   },
@@ -17,17 +55,6 @@ Util = {
     }
     return temp;
   },
-  getWeatherIcon: function(weather){
-    var result = ""
-    if(weather === "Rain"){
-      result = '<i class="fa fa-tint" aria-hidden="true"></i>';
-    }else if(weather === "Clouds"){
-      result = '<i class="fa fa-cloud" aria-hidden="true"></i>';
-    }else if(weather === "Clear"){
-      result = '<i class="fa fa-sun-o" aria-hidden="true"></i>';
-    }
-    return result;
-  },
   getCountryFlag: function(country){
     var country = country.toLowerCase();
     var result = "<span class='flag-icon flag-icon-" + country + "'></span>";
@@ -41,5 +68,12 @@ Util = {
     shift = Math.pow(10,digit);
     data = Math.round(data * shift)/shift;
     return data;
+  },
+  unselectAllDayButton: function(){
+    $("#day0").removeClass("selected");
+    $("#day1").removeClass("selected");
+    $("#day2").removeClass("selected");
+    $("#day3").removeClass("selected");
+    $("#day4").removeClass("selected");
   }
 }

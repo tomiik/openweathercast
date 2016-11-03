@@ -1,20 +1,33 @@
 var source = "openweathermap"
-var color_index = 0;
-var symbol_index = 0;
-var dummy = [{
-        "name": 'Tokyo',
-        "data": [7.0, 6.9, 9.5, 14.5, 18.4, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
-      }, {
-        "name": 'London',
-        "data": [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
-      }];
-
 
 Chart = {
+  refreshOneDayTempChart(){
+    var day = 0;
+    for(var i = 0; i < dates.length; i++){
+      if($("#day" + i).hasClass("selected")){
+        day = i;
+        break;
+      }
+    }
+    if($("#deg-type-c").hasClass("selected")){
+      this.oneDayChart(dates_2d[day],temps_c_2d[day]);
+    }else{
+      this.oneDayChart(dates_2d[day],temps_f_2d[day]);
+    }
+  },
+  oneDayTempChart(dates,temps){
+    Chart.oneDayChart(dates,temps);
+  },
+  oneDayChart(dates,data){
+    var plotdata = [];
+    plotdata.push(Chart.dataForChart("",data));
+    this.simpleChart("Temperature",dates,plotdata,enum_temp_deg_type.C);
+
+  },
   dataForChart(city,data){
     var obj =  {"_colorIndex": color_index, "_symbolIndex": symbol_index,"name": city, "data":data};
-    color_index++;
-    symbol_index++;
+    //color_index++;
+    //symbol_index++;
     return obj;
   },
   simpleChart: function (title, dates,temps,temp_type) {
@@ -26,17 +39,22 @@ Chart = {
       },
       title: {
         text: title
+        //visible: false
       },
-      subtitle: {
-        text: source
+      //subtitle: {
+        //text: source
+      //},
+      //xAxis: {
+      //  categories: dates
+      //},
+      yAxis: {
+        visible: false
       },
       xAxis: {
         categories: dates
       },
-      yAxis: {
-        title: {
-          text: 'Temperature (°C)'
-        }
+      credits:{
+        enabled: false
       },
       plotOptions: {
         line: {
@@ -45,6 +63,9 @@ Chart = {
           },
           enableMouseTracking: true
         }
+      },
+      legend:{
+        enabled: false
       },
       //series: dummy
       series: temps

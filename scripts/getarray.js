@@ -63,4 +63,11 @@ Getarray = {
     }
     return array;
   },
+  extractDay: function(data,day){
+    var array = [];
+    array.push(data[day*3]);
+    array.push(data[day*3+1]);
+    array.push(data[day*3+2]);
+    return array;
+  }
 }

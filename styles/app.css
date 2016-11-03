@@ -1,6 +1,5 @@
 body {
-  font-family: 'Roboto', sans-serif;
-  font-size: 2em; }
+  font-family: 'Roboto', sans-serif; }
   body h1 {
     text-align: center;
     border-radius: 2em;
@@ -11,5 +10,95 @@ table {
   font-size: 1.2em; }
   table i {
     width: 20px; }
+
+#weatherapp {
+  width: 600px; }
+  #weatherapp .row #info h2 {
+    font-size: 3em;
+    margin: 0; }
+  #weatherapp .row #info p {
+    height: 1em;
+    margin: 0;
+    padding: 0; }
+  #weatherapp .row #degree-picture {
+    margin-top: 1.2em;
+    position: relative; }
+    #weatherapp .row #degree-picture #degree-picture-icon {
+      top: 0;
+      left: 0;
+      font-size: 1em; }
+      #weatherapp .row #degree-picture #degree-picture-icon ul {
+        font-size: 1.2em;
+        margin-top: -2.5em;
+        margin-left: -1.5em; }
+    #weatherapp .row #degree-picture #degree-picture-temp {
+      font-size: 6em;
+      line-height: 1em; }
+    #weatherapp .row #degree-picture #degree-picture-selector {
+      font-size: 1.5em;
+      padding: 0.2em; }
+      #weatherapp .row #degree-picture #degree-picture-selector .selected {
+        color: #222; }
+      #weatherapp .row #degree-picture #degree-picture-selector .disable {
+        color: #ddd; }
+  #weatherapp .row #datail {
+    margin-top: 0.5em;
+    font-size: 1.5em; }
+    #weatherapp .row #datail .button {
+      float: left;
+      background-color: #ddd;
+      height: 0.8em;
+      width: 0.8em;
+      border-radius: 10px;
+      margin-top: 0.3em; }
+    #weatherapp .row #datail p {
+      margin: 0;
+      padding: 0;
+      line-height: 1.4em; }
+    #weatherapp .row #datail span {
+      height: 1em; }
+  #weatherapp .row #chart-container {
+    width: 90%; }
+  #weatherapp .row #days-container .weather-panel:hover {
+    box-shadow: 3px 3px 1px #000; }
+  #weatherapp .row #days-container .selected {
+    border-color: #aaa;
+    box-shadow: 3px 3px 3px #000; }
+  #weatherapp .row #days-container .weather-panel {
+    border-style: solid;
+    border-width: 1px;
+    position: relative;
+    height: 10em;
+    text-align: center;
+    background-color: #fff;
+    padding: 0; }
+    #weatherapp .row #days-container .weather-panel .day-name {
+      position: absolute;
+      font-size: 1.2em;
+      right: 0;
+      left: 0;
+      margin: 0 auto;
+      padding: 0;
+      top: 0; }
+    #weatherapp .row #days-container .weather-panel .day-temp {
+      position: absolute;
+      margin: 0;
+      bottom: 0;
+      padding: 0;
+      color: #333;
+      font-size: 1em;
+      line-height: 1em;
+      padding: 0.5em; }
+    #weatherapp .row #days-container .weather-panel .day-temp-min {
+      left: 0; }
+    #weatherapp .row #days-container .weather-panel .day-temp-max {
+      right: 0; }
+    #weatherapp .row #days-container .weather-panel .weather-icon {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50%;
+      margin-top: -2em;
+      margin-left: -6em; }
 
 /*# sourceMappingURL=app.css.map */

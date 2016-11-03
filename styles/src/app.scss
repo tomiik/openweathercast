@@ -1,6 +1,10 @@
+$font-main-color: #333;
+$weather-panel-color: #e3f2fd;
+*{
+
+}
 body {
   font-family: 'Roboto', sans-serif;
-  font-size: 2em;
   h1{
     text-align:center;
     //background-color: #1a3;
@@ -15,5 +19,145 @@ table{
   font-size: 1.2em;
   i{
     width: 20px;
+  }
+}
+
+#weatherapp{
+  width: 600px;
+  //border-style:solid;
+  //color: red;
+  .row{
+    //border-style:solid;
+    //color: blue;
+    #info{
+      //border-style:solid;
+      //color: pink;
+      h2{
+        font-size:3em;
+        margin:0;
+      }
+      p{
+        height: 1em;
+        margin:0;
+        padding:0;
+      }
+    }
+    #degree-picture{
+      margin-top: 1.2em;
+
+      //border-style:solid;
+      //color: green;
+      position: relative;
+      #degree-picture-icon{
+        //border-style:solid;
+        //color: red;
+        top: 0;
+        left: 0;
+        font-size: 1em;
+        ul{
+          font-size:1.2em;
+          margin-top: -2.5em;
+          margin-left: -1.5em;
+        }
+      }
+      #degree-picture-temp{
+        //background-color: green;
+        //border-style:solid;
+        font-size: 6em;
+        line-height: 1em;
+      }
+      #degree-picture-selector{
+        //background-color: green;
+        //border-style:solid;
+        font-size: 1.5em;
+        padding: 0.2em;
+        .selected{
+          color: #222;
+        }
+        .disable{
+          color: #ddd;
+        }
+      }
+    }
+    #datail{
+      //border-style:solid;
+      margin-top:0.5em;
+      font-size: 1.5em;
+      .button{
+        float: left;
+        background-color:#ddd;
+        height: 0.8em;
+        width: 0.8em;
+        border-radius: 10px;
+        margin-top: 0.3em;
+      }
+      p{
+        margin:0;
+        padding:0;
+        line-height: 1.4em;
+      }
+      span{
+        height: 1em;
+      }
+    }
+    #chart-container{
+      //border-style:solid;
+      //color: purple;
+      width: 90%;
+    }
+    #days-container{
+      .weather-panel:hover{
+        box-shadow: 3px 3px 1px #000;
+      }
+      .selected{
+        border-color: #aaa;
+        box-shadow: 3px 3px 3px #000;
+      }
+      .weather-panel{
+        border-style: solid;
+        border-width: 1px;
+        position: relative;
+        height: 10em;
+        text-align:center;
+        //background-color:$weather-panel-color;
+        background-color: #fff;
+        padding: 0;
+
+        .day-name{
+          position:absolute;
+          font-size: 1.2em;
+          right: 0;
+          left: 0;
+          margin:0 auto;
+          padding: 0;
+          top:0;
+        }
+        .day-temp{
+          position:absolute;
+          margin: 0;
+          bottom: 0;
+          padding: 0;
+          color: $font-main-color;
+          font-size: 1em;
+          line-height: 1em;
+          padding: 0.5em;
+        }
+
+        .day-temp-min{
+          left: 0;
+        }
+        .day-temp-max{
+          right: 0;
+        }
+        .weather-icon{
+          position:absolute;
+          left:0;
+          right:0;
+          top:50%;
+          margin-top: -2em;
+          margin-left: -6em;
+        }
+      }
+    }
   }
 }
